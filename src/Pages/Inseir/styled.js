@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
-export const StyledInseir= styled.main`
+
+export const StyledInseir = styled.main`
 
 width: 100%;
 height: 100vh;
@@ -72,6 +73,14 @@ input{
     pointer-events: none;
     transition: .5s;
 } 
+
+.cxBotoes{
+    width: 70%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
 
 
 button{

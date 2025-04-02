@@ -1,9 +1,10 @@
 import { StyledInseir } from "./styled";
 import { useForm } from "react-hook-form";
-import ComponenteExibir from '../../Components/ComponenteExibir/ComponenteExibir';
+
 
 export default function Inseir() {
     const { register, handleSubmit } = useForm();
+
 
     function criarMensagem(data) {
         // Recupera os dados do localStorage e converte para um array ou inicializa como array vazio
@@ -68,10 +69,15 @@ export default function Inseir() {
                         <label htmlFor="mensagem" className="labelInput">Mensagem</label>
                     </div>
 
-                    <button type="submit">ENVIAR</button>
+                    <div className="cxBotoes">
+                        <button type="submit">ENVIAR</button>
+                        <button onClick={()=> localStorage.clear()} type="submit">LIMPAR</button>
+                    </div >
+
+
                 </form>
 
-                <ComponenteExibir />
+
             </section>
 
 

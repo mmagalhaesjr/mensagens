@@ -5,7 +5,6 @@ export default function ComponenteExibir() {
   const pegarMensagens = localStorage.getItem('dadosFormulario')
   const dataObj = JSON.parse(pegarMensagens)
 
-  console.log(pegarMensagens)
 
   return (
     <StyledComponenteExibir>
