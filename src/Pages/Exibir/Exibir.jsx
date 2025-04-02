@@ -5,28 +5,38 @@ import logo from "../../assets/ico.png";
 import logo1 from "../../assets/logo1.png";
 
 export default function Exibir() {
-  const pegarMensagens = localStorage.getItem("dadosFormulario");
-  const dataObj = pegarMensagens ? JSON.parse(pegarMensagens) : [];
-
-  const [mensagensExibidas, setMensagensExibidas] = useState(dataObj.slice(0, 3));
-  const [indiceAtual, setIndiceAtual] = useState(3);
+  const [mensagensExibidas, setMensagensExibidas] = useState([]);
 
   useEffect(() => {
-    if (dataObj.length > 3) {
-      const intervalo = setInterval(() => {
-        setMensagensExibidas((prev) => {
-          if (indiceAtual < dataObj.length) {
-            return [...prev.slice(1), dataObj[indiceAtual]];
-          }
-          return prev;
-        });
+    const atualizarMensagens = () => {
+      const pegarMensagens = localStorage.getItem("dadosFormulario");
+      let dataObj = pegarMensagens ? JSON.parse(pegarMensagens) : [];
 
-        setIndiceAtual((prev) => (prev < dataObj.length ? prev + 1 : prev));
-      }, 10 * 1000); // troca a cada 10 segundos
+      if (dataObj.length > 3) {
+        // Remove a primeira mensagem
+        dataObj.shift();
+        localStorage.setItem("dadosFormulario", JSON.stringify(dataObj));
 
-      return () => clearInterval(intervalo);
-    }
-  }, [indiceAtual, dataObj]);
+        // Atualiza o estado para refletir as 3 primeiras mensagens
+        setMensagensExibidas(dataObj.slice(0, 3));
+
+        // Recarrega a página para refletir a mudança
+        setTimeout(() => {
+          window.location.reload();
+        }, 500); // Pequeno delay para garantir a atualização
+      } else {
+        setMensagensExibidas(dataObj.slice(0, 3));
+      }
+    };
+
+    // Carrega as mensagens inicialmente
+    atualizarMensagens();
+
+    // Define um intervalo para remover a primeira mensagem a cada 10 segundos, se houver mais de 3
+    const intervalo = setInterval(atualizarMensagens, 10 * 1000);
+
+    return () => clearInterval(intervalo); // Limpa o intervalo quando o componente desmonta
+  }, []);
 
   return (
     <StyledExibir>

@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 
 
 export default function Inseir() {
-    const { register, handleSubmit } = useForm();
+    const { register, handleSubmit,reset } = useForm();
 
 
     function criarMensagem(data) {
@@ -34,6 +34,7 @@ export default function Inseir() {
 
         alert("Dados salvos com sucesso!");
         console.log(mensagensSalvas);
+        reset();
     }
 
     return (
