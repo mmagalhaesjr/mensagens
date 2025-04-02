@@ -7,16 +7,28 @@ height: 100vh;
 background-color: #f5f1c3;
 
 display: flex;
+flex-direction: column;
 align-items: center;
-justify-content: center;
+justify-content: space-evenly;
+
+section{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.titulo{
+   font-size: 2.5rem;
+}
 
 h2{
     font-size: 2rem;
 }
 
 form{
-    width: 70%;
-    height: 50%;
+    width: 60%;
+    height: 500px;
     background-color: #ffffff;
 
     display: flex;

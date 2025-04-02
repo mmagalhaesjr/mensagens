@@ -1,6 +1,6 @@
-import { StyledExibir } from "./styled";
+import { StyledComponenteExibir } from "./styled";
 
-export default function Exibir() {
+export default function ComponenteExibir() {
 
   const pegarMensagens = localStorage.getItem('dadosFormulario')
   const dataObj = JSON.parse(pegarMensagens)
@@ -8,12 +8,7 @@ export default function Exibir() {
   console.log(pegarMensagens)
 
   return (
-    <StyledExibir>
-
-
-
-
-      <section>
+    <StyledComponenteExibir>
 
 
         {dataObj.map((obj) => (
@@ -28,9 +23,7 @@ export default function Exibir() {
 
         ))}
 
-      </section>
 
-
-    </StyledExibir>
+    </StyledComponenteExibir>
   )
 }

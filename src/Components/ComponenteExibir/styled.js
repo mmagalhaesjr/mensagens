@@ -1,12 +1,13 @@
 import styled from "styled-components";
 
-export const StyledExibir = styled.main`
+export const StyledComponenteExibir = styled.main`
 
-width: 100%;
-height: 100vh;
+width: 500px;
+height: 500px;
 background-color: #000000;
 
 display: flex;
+flex-direction: column;
 align-items: center;
 justify-content: center;
 
@@ -25,12 +26,13 @@ section{
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 15px;
+    gap: 5px;
 }
 
 h1{
     color: #ffffff;
-    font-size: 2rem;
+    font-size: .7rem;
+    margin-top:10px
 }
 
 
