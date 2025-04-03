@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { StyledExibir, StyledRodape } from "./styled";
+import { StyledExibir, StyledRodape, StyledFotos, StyledMensagens } from "./styled";
 import qrcode from "../../assets/zap.png";
 import logo from "../../assets/ico.png";
 import logo1 from "../../assets/logo1.png";
@@ -12,13 +12,13 @@ export default function Exibir() {
       const pegarMensagens = localStorage.getItem("dadosFormulario");
       let dataObj = pegarMensagens ? JSON.parse(pegarMensagens) : [];
 
-      if (dataObj.length > 3) {
+      if (dataObj.length > 1) {
         // Remove a primeira mensagem
         dataObj.shift();
         localStorage.setItem("dadosFormulario", JSON.stringify(dataObj));
 
         // Atualiza o estado para refletir as 3 primeiras mensagens
-        setMensagensExibidas(dataObj.slice(0, 3));
+        setMensagensExibidas(dataObj.slice(0, 1));
 
         // Recarrega a página para refletir a mudança
         setTimeout(() => {
@@ -40,34 +40,46 @@ export default function Exibir() {
 
   return (
     <StyledExibir>
-      <section className="containerMsg">
+
+      <StyledFotos>
+
+      </StyledFotos>
+
+
+
+      <StyledMensagens>
         {mensagensExibidas.length === 0 ? (
           <img className="logo" src={logo1} alt="logo" />
         ) : (
           mensagensExibidas.map((obj, index) => (
             <div className="caixaMensagem" key={index}>
-              <h1>{obj.nome}</h1>
-              <h1>diz:</h1>
-              <h1>{obj.mensagem}</h1>
+              <h1>{obj.texto}</h1>
             </div>
           ))
         )}
-      </section>
 
-      <StyledRodape>
-        <section>
-          <div className="zap">
-            <p>WHATSAPP</p>
-            <img src={qrcode} alt="qrcode" />
-          </div>
 
-          <div className="txt">
-            <h2>Escaneie o QR Code, envie uma mensagem ou peça sua música.</h2>
-          </div>
 
-          <img src={logo} alt="logo" />
-        </section>
-      </StyledRodape>
+        <StyledRodape>
+         
+            <div className="zap">
+              <p>WHATSAPP</p>
+              <img src={qrcode} alt="qrcode" />
+            </div>
+
+            <div className="txt">
+              <h2>PEÇA SUA MUSICA PELO NOSSO WHATSAPP. (32) 99915-8008</h2>
+            </div>
+
+        </StyledRodape>
+
+
+      </StyledMensagens>
+
+
+
+
+
     </StyledExibir>
   );
 }

@@ -22,8 +22,7 @@ export default function Inseir() {
 
         // Cria novo objeto de mensagem
         const novaMensagem = {
-            nome: data.nome,
-            mensagem: data.mensagem
+            texto: data.texto,
         };
 
         // Adiciona a nova mensagem ao array
@@ -51,24 +50,14 @@ export default function Inseir() {
                     <div className="inputBox">
                         <input
                             type="text"
-                            id="nome"
+                            id="texto"
                             className="inputCampo"
                             required
-                            {...register("nome")}
+                            {...register("texto")}
                         />
-                        <label htmlFor="nome" className="labelInput">Nome</label>
+                        <label htmlFor="texto" className="labelInput">Mensagam:</label>
                     </div>
 
-                    <div className="inputBox">
-                        <input
-                            type="text"
-                            id="mensagem"
-                            className="inputCampo"
-                            required
-                            {...register("mensagem")}
-                        />
-                        <label htmlFor="mensagem" className="labelInput">Mensagem</label>
-                    </div>
 
                     <div className="cxBotoes">
                         <button type="submit">ENVIAR</button>

@@ -4,30 +4,31 @@ export const StyledExibir = styled.main`
 
 width: 100%;
 height: 100vh;
-background-color: #000000;
+background-color: #0a94d4;
 position: relative;
 
 display: flex;
-flex-direction: column;
 align-items: center;
-justify-content: space-between;
+justify-content: space-evenly;
 
+`
 
-.containerMsg{
-    width: 95%;
-    height: 70%;
+export const StyledMensagens = styled.section`
+
+    width:65%;
+    height: 95%;
     padding: 20px;
-    margin-top: 20px;
     flex-wrap: wrap;
+    position: relative;
 
-    background-color: #6d6d6d3b;
+    background-color: #daba04fd;
    
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 10%;
-}
+
 
 .caixaMensagem{
     width: 100%;
@@ -48,6 +49,18 @@ h1{
 
 `
 
+
+
+
+export const StyledFotos = styled.section`
+    width:30%;
+    height: 95%;
+    background-color: #0000009a;
+`
+
+
+
+
 export const StyledRodape = styled.footer`
     width: 100%;
     position: absolute;
@@ -56,19 +69,8 @@ export const StyledRodape = styled.footer`
     display: flex;
     align-items: center;
     justify-content: center;
+    border: solid 5px red;
   
-
-
-    section{
-        width: 100%;
-        height: 200px;
-        position: relative;
-
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-    }
 
     .zap{
         width: fit-content;
@@ -80,8 +82,8 @@ export const StyledRodape = styled.footer`
        
     }
     img{
-        width: 200px;
-        margin-bottom: 50px;
+        width: 150px;
+
     }
     P{
         color:#ffffff;
@@ -91,15 +93,16 @@ export const StyledRodape = styled.footer`
 
 
     .txt{
-        width: fit-content;
-
+        width: 80%;
+        height: fit-content;
         display: flex;
         align-items: start;
         justify-content: center; 
+        border: solid 2px red;
     }
     h2{
         color: #ffffff;
-        font-size: 3rem;
+        font-size: 2rem;
         position: absolute;
         bottom: 10px;
     }
