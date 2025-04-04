@@ -44,6 +44,10 @@ export const StyledMensagens = styled.section`
 
 }
 
+.logo{
+    width: 90%;
+}
+
 h1{
     font-size: 5rem;
     text-align: center;
