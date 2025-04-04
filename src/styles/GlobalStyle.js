@@ -57,11 +57,10 @@ const GlobalStyle = createGlobalStyle`
         line-height: 1;
         width: 100%;
         font-optical-sizing: auto;
-        /* border: solid 5px #080808; */
+       
         overflow: hidden;
-        font-family: "Inter", sans-serif;
-      
-
+        font-family: "Hanken Grotesk", sans-serif;
+        color: #000000;
     }
 
     

@@ -32,19 +32,23 @@ export const StyledMensagens = styled.section`
 
 .caixaMensagem{
     width: 100%;
-    height: fit-content;
+    height: 80%;
+    margin-bottom: 20%;
     overflow: hidden;
 
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    gap: 15px;
+  
+
 }
 
 h1{
-    color: #ffffff;
-    font-size: 3.5rem;
+    font-size: 5rem;
+    text-align: center;
+    line-height: 1.2;
+    
 }
 
 `
@@ -69,11 +73,10 @@ export const StyledRodape = styled.footer`
     display: flex;
     align-items: center;
     justify-content: center;
-    border: solid 5px red;
   
 
     .zap{
-        width: fit-content;
+        width: 30%;
 
         display: flex;
         flex-direction: column;
@@ -86,7 +89,6 @@ export const StyledRodape = styled.footer`
 
     }
     P{
-        color:#ffffff;
         font-size:2rem  ;
     }
 
@@ -94,17 +96,16 @@ export const StyledRodape = styled.footer`
 
     .txt{
         width: 80%;
-        height: fit-content;
+        height: 200px;
+
         display: flex;
-        align-items: start;
+        align-items: center;
         justify-content: center; 
-        border: solid 2px red;
+  
     }
     h2{
-        color: #ffffff;
-        font-size: 2rem;
-        position: absolute;
-        bottom: 10px;
+        font-size: 3rem;
+        line-height: 1.2;
     }
 
 `

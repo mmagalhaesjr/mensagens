@@ -1,85 +1,85 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { StyledExibir, StyledRodape, StyledFotos, StyledMensagens } from "./styled";
 import qrcode from "../../assets/zap.png";
-import logo from "../../assets/ico.png";
 import logo1 from "../../assets/logo1.png";
 
 export default function Exibir() {
-  const [mensagensExibidas, setMensagensExibidas] = useState([]);
+  const [mensagens, setMensagens] = useState([]);
+  const [mensagemAtualIndex, setMensagemAtualIndex] = useState(0);
+  const mensagensAntigasRef = useRef([]);
 
+  // Carrega as mensagens do localStorage
+  const carregarMensagens = () => {
+    const pegar = localStorage.getItem("dadosFormulario");
+    const lista = pegar ? JSON.parse(pegar) : [];
+    return lista;
+  };
+
+  // Carrega as mensagens inicialmente
   useEffect(() => {
-    const atualizarMensagens = () => {
-      const pegarMensagens = localStorage.getItem("dadosFormulario");
-      let dataObj = pegarMensagens ? JSON.parse(pegarMensagens) : [];
+    const mensagensIniciais = carregarMensagens();
+    setMensagens(mensagensIniciais);
+    mensagensAntigasRef.current = mensagensIniciais;
+    setMensagemAtualIndex(0);
+  }, []);
 
-      if (dataObj.length > 1) {
-        // Remove a primeira mensagem
-        dataObj.shift();
-        localStorage.setItem("dadosFormulario", JSON.stringify(dataObj));
+  // Avança a mensagem a cada 5 segundos
+  useEffect(() => {
+    if (mensagens.length === 0) return;
 
-        // Atualiza o estado para refletir as 3 primeiras mensagens
-        setMensagensExibidas(dataObj.slice(0, 1));
+    const intervalo = setInterval(() => {
+      setMensagemAtualIndex((prev) => {
+        if (prev + 1 < mensagens.length) {
+          return prev + 1;
+        } else {
+          return 0; // volta para o início
+        }
+      });
+    }, 5000);
 
-        // Recarrega a página para refletir a mudança
-        setTimeout(() => {
-          window.location.reload();
-        }, 500); // Pequeno delay para garantir a atualização
-      } else {
-        setMensagensExibidas(dataObj.slice(0, 3));
+    return () => clearInterval(intervalo);
+  }, [mensagens]);
+
+  // Verifica se surgiram novas mensagens
+  useEffect(() => {
+    const verificarNovasMensagens = setInterval(() => {
+      const atualizadas = carregarMensagens();
+
+      if (atualizadas.length > mensagensAntigasRef.current.length) {
+        const novas = atualizadas.slice(mensagensAntigasRef.current.length);
+        const atualComNovas = [...mensagens, ...novas]; // <- usa 'mensagens' (estado atual)
+        mensagensAntigasRef.current = atualComNovas;
+        setMensagens(atualComNovas);
       }
-    };
+      
+    }, 1000); // verifica a cada 5 segundos
 
-    // Carrega as mensagens inicialmente
-    atualizarMensagens();
-
-    // Define um intervalo para remover a primeira mensagem a cada 10 segundos, se houver mais de 3
-    const intervalo = setInterval(atualizarMensagens, 10 * 1000);
-
-    return () => clearInterval(intervalo); // Limpa o intervalo quando o componente desmonta
+    return () => clearInterval(verificarNovasMensagens);
   }, []);
 
   return (
     <StyledExibir>
-
-      <StyledFotos>
-
-      </StyledFotos>
-
-
+      <StyledFotos />
 
       <StyledMensagens>
-        {mensagensExibidas.length === 0 ? (
+        {mensagens.length === 0 ? (
           <img className="logo" src={logo1} alt="logo" />
         ) : (
-          mensagensExibidas.map((obj, index) => (
-            <div className="caixaMensagem" key={index}>
-              <h1>{obj.texto}</h1>
-            </div>
-          ))
+          <div className="caixaMensagem">
+            <h1>{mensagens[mensagemAtualIndex]?.texto}</h1>
+          </div>
         )}
 
-
-
         <StyledRodape>
-         
-            <div className="zap">
-              <p>WHATSAPP</p>
-              <img src={qrcode} alt="qrcode" />
-            </div>
-
-            <div className="txt">
-              <h2>PEÇA SUA MUSICA PELO NOSSO WHATSAPP. (32) 99915-8008</h2>
-            </div>
-
+          <div className="zap">
+            <p>WHATSAPP</p>
+            <img src={qrcode} alt="qrcode" />
+          </div>
+          <div className="txt">
+            <h2>PEÇA SUA MÚSICA PELO NOSSO WHATSAPP. (32) 99915-8008</h2>
+          </div>
         </StyledRodape>
-
-
       </StyledMensagens>
-
-
-
-
-
     </StyledExibir>
   );
 }
