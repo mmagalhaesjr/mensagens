@@ -2,6 +2,17 @@ import { StyledInseir } from "./styled";
 import { useForm } from "react-hook-form";
 
 
+import { Swiper, SwiperSlide } from 'swiper/react';
+
+// import 'swiper/css/effect-creative';
+
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+
+import { Autoplay, Navigation, Pagination, A11y } from 'swiper/modules';
+
+
 export default function Inseir() {
     const { register, handleSubmit,reset } = useForm();
 

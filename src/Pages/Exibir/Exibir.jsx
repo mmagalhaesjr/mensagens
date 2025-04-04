@@ -1,7 +1,8 @@
 import { useState, useEffect, useRef } from "react";
-import { StyledExibir, StyledRodape, StyledFotos, StyledMensagens } from "./styled";
+import { StyledExibir, StyledRodape, StyledMensagens, StyledFotos } from "./styled";
 import qrcode from "../../assets/zap.png";
 import logo1 from "../../assets/logo1.png";
+import SlideFotos from "../../Components/SlideFotos/SlideFotos";
 
 export default function Exibir() {
   const [mensagens, setMensagens] = useState([]);
@@ -51,7 +52,7 @@ export default function Exibir() {
         mensagensAntigasRef.current = atualComNovas;
         setMensagens(atualComNovas);
       }
-      
+
     }, 1000); // verifica a cada 5 segundos
 
     return () => clearInterval(verificarNovasMensagens);
@@ -59,7 +60,14 @@ export default function Exibir() {
 
   return (
     <StyledExibir>
-      <StyledFotos />
+
+      <StyledFotos>
+
+        <SlideFotos />
+
+      </StyledFotos>
+
+
 
       <StyledMensagens>
         {mensagens.length === 0 ? (
@@ -72,7 +80,7 @@ export default function Exibir() {
 
         <StyledRodape>
           <div className="zap">
-      
+
             <img src={qrcode} alt="qrcode" />
           </div>
           <div className="txt">
