@@ -15,8 +15,8 @@ justify-content: space-evenly;
 
 export const StyledMensagens = styled.section`
 
-    width:65%;
-    height: 95%;
+    width:68%;
+    height: 98%;
     padding: 20px;
     flex-wrap: wrap;
     position: relative;
@@ -58,7 +58,7 @@ h1{
 
 export const StyledFotos = styled.section`
     width:30%;
-    height: 95%;
+    height: 98%;
     background-color: #0000009a;
 `
 
