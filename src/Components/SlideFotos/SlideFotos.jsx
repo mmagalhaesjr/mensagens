@@ -11,9 +11,8 @@ import 'swiper/css/pagination';
 import { Autoplay, A11y } from 'swiper/modules';
 
 
-import f2 from '../../assets/fotos/2.jpg'
-import f3 from '../../assets/fotos/3.jpg'
-import f4 from '../../assets/fotos/4.jpg'
+import f1 from '../../assets/fotos/1.png'
+
 
 export default function SlideFotos(){
     return(
@@ -36,14 +35,14 @@ modules={[Autoplay, A11y]}
 <SwiperSlide>
 
     <div id="sala1" className="salas">
-        <img src={f2} alt="img" />
+        <img src={f1} alt="img" />
 
     </div>
 </SwiperSlide>
 <SwiperSlide>
 
     <div id="sala2" className="salas">
-        <img src={f3} alt="img" />
+        <img src={f1} alt="img" />
        
 
     </div>
@@ -52,7 +51,7 @@ modules={[Autoplay, A11y]}
 <SwiperSlide>
 
     <div id="sala3" className="salas">
-        <img src={f4} alt="img" />
+        <img src={f1} alt="img" />
         
     </div>
 
