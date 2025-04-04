@@ -49,8 +49,7 @@ input{
 }
 .inputCampo{
     background: none;
-    border: none;
-    border-bottom: 1px solid #101010;
+   
     outline: none;
     color: #101010;
     font-size: 20px;
@@ -60,8 +59,9 @@ input{
 }
 .inputCampo:focus ~ .labelInput,
 .inputCampo:valid ~ .labelInput{
-    top: -20px;
+    top: -30px;
     font-size: 12px;
+   
   
     color:#926F5D; 
 }
@@ -72,6 +72,7 @@ input{
     left: 0px;
     pointer-events: none;
     transition: .5s;
+    padding: 10px;
 } 
 
 .cxBotoes{
@@ -88,6 +89,11 @@ button{
     height: 50px;
     cursor: pointer;
     font-size: 1.5rem;
+}
+#botaoMsg{
+    font-size: 1rem;
+    background-color: #9c0d0d88;
+    color: #ffffff;
 }
 
 

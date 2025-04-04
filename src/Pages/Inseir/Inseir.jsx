@@ -45,23 +45,17 @@ export default function Inseir() {
 
             <section>
                 <form onSubmit={handleSubmit(criarMensagem)}>
-                    <h2>Insira as informações nos campos abaixo!</h2>
+                    <h2>Insira a mensagem no campo abaixo!</h2>
 
                     <div className="inputBox">
-                        <input
-                            type="text"
-                            id="texto"
-                            className="inputCampo"
-                            required
-                            {...register("texto")}
-                        />
-                        <label htmlFor="texto" className="labelInput">Mensagam:</label>
+                        <textarea   id="texto"  className="inputCampo" required    {...register("texto")}   type="text" rows="4" maxLength={150} cols="50"></textarea>
+                        <label htmlFor="texto" className="labelInput">Maximo 150 Caracteres:</label>
                     </div>
 
 
                     <div className="cxBotoes">
                         <button type="submit">ENVIAR</button>
-                        <button onClick={()=> localStorage.clear()} type="submit">LIMPAR</button>
+                        <button id="botaoMsg" onClick={()=> localStorage.clear()} type="submit">EXCLUIR TODAS AS MENSAGENS</button>
                     </div >
 
 

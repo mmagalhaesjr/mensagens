@@ -72,7 +72,7 @@ export default function Exibir() {
 
         <StyledRodape>
           <div className="zap">
-            <p>WHATSAPP</p>
+      
             <img src={qrcode} alt="qrcode" />
           </div>
           <div className="txt">
