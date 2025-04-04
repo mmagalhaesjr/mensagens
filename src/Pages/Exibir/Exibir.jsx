@@ -37,7 +37,7 @@ export default function Exibir() {
 
     const intervalo = setInterval(() => {
       setMensagemAtualIndex((prev) => (prev + 1) % mensagens.length);
-    }, 20000);
+    }, 30000);
 
     return () => clearInterval(intervalo);
   }, [mensagens]);
