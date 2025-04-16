@@ -1,53 +1,76 @@
+import { useState } from "react";
 import { StyledInserirImagens } from "./styled";
 
 export default function InserirImagens() {
+    const [imagens, setImagens] = useState({
+        img1: null,
+        img2: null,
+        img3: null,
+        img4: null,
+        img5: null
+    });
+
+    const [files, setFiles] = useState({
+        img1: null,
+        img2: null,
+        img3: null,
+        img4: null,
+        img5: null
+    });
+
+    const handleFileChange = (e, key) => {
+        const file = e.target.files[0];
+        if (file) {
+            const preview = URL.createObjectURL(file);
+            setImagens(prev => ({ ...prev, [key]: preview }));
+            setFiles(prev => ({ ...prev, [key]: file }));
+        }
+    };
+
+    const toBase64 = (file) => {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = () => resolve(reader.result);
+            reader.onerror = (error) => reject(error);
+        });
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        const imagensBase64 = {};
+
+        for (const key in files) {
+            if (files[key]) {
+                imagensBase64[key] = await toBase64(files[key]);
+            }
+        }
+
+        localStorage.setItem("imagens", JSON.stringify(imagensBase64));
+        alert("Imagens salvas no localStorage!");
+    };
+
     return (
         <StyledInserirImagens>
-
-            <form action="">
-
-                <div className="inputBox">
-                    <img src="https://webshop.vteximg.com.br/arquivos/ids/200402-0-0/M_Goleio_Frente.jpg?v=637843305065030000" alt="img" />
-
-                    <input className="inputCampo" type="text" />
-                    <label htmlFor="texto" className="labelInput">Link imagem 1:</label>
-                </div>
-
-                <div className="inputBox">
-                    <img src="https://i.pinimg.com/474x/f8/b1/7b/f8b17b36f07ee0b473023dfe38cadf5e.jpg" alt="img" />
-
-                    <input className="inputCampo" type="text" />
-                    <label htmlFor="texto" className="labelInput">Link imagem 2:</label>
-                </div>
-
-                <div className="inputBox">
-                    <img src="" alt="img" />
-
-                    <input className="inputCampo" type="text" />
-                    <label htmlFor="texto" className="labelInput">Link imagem 3:</label>
-                </div>
-
-                <div className="inputBox">
-                <img src="" alt="img" />
-                    <input className="inputCampo" type="text" />
-                    <label htmlFor="texto" className="labelInput">Link imagem 4:</label>
-                </div>
-
-                <div className="inputBox">
-                   <img src="" alt="img" />
-                    <input className="inputCampo" type="text" />
-                    <label htmlFor="texto" className="labelInput">Link imagem 5:</label>
-                </div>
-
-
-
+            <form onSubmit={handleSubmit}>
+                {[1, 2, 3, 4, 5].map(num => (
+                    <div className="inputBox" key={`img${num}`}>
+                        <img src={imagens[`img${num}`] || ""} alt={`preview ${num}`} />
+                        <input
+                            className="inputCampo"
+                            type="file"
+                            accept="image/*"
+                            onChange={(e) => handleFileChange(e, `img${num}`)}
+                        />
+                        <label className="labelInput">Imagem {num}:</label>
+                    </div>
+                ))}
 
                 <div className="cxBotoes">
                     <button type="submit">Atualizar</button>
                 </div>
-
             </form>
-
         </StyledInserirImagens>
     )
 }
