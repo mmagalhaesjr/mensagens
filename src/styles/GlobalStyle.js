@@ -27,6 +27,8 @@ const GlobalStyle = createGlobalStyle`
   
     html{
     scroll-behavior: smooth;
+
+    
     
     
 }
@@ -36,31 +38,17 @@ const GlobalStyle = createGlobalStyle`
         display: block;
     }
 
-/* @font-face {
-    font-family: 'marjorieMediu';
-    src: url('fonts/NeueHaasDisplayMediu.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'marjorieLigth';
-    src: url('fonts/NeueHaasDisplayLight.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-} */
-
-
 
     body {
-     
-        line-height: 1;
         width: 100%;
-        font-optical-sizing: auto;
-       
-        overflow: hidden;
+        background-color: #0a94d4;
+    
+        
+        line-height: 1;
+    
         font-family: "Hanken Grotesk", sans-serif;
         color: #000000;
+        font-optical-sizing: auto;
     }
 
     

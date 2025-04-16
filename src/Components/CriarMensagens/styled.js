@@ -1,35 +1,16 @@
 import styled from "styled-components";
 
-
-export const StyledInseir = styled.main`
-
-width: 100%;
-height: 100vh;
-background-color: #f5f1c3;
-
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: space-evenly;
-
-section{
-    width: 100%;
+export const StyledCriarMsg = styled.section`
+    width: 40%;
+    height: 100%;
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
-}
-
-.titulo{
-   font-size: 2.5rem;
-}
-
-h2{
-    font-size: 2rem;
-}
+    justify-content: space-between;
+    
 
 form{
-    width: 60%;
-    height: 500px;
+    width: 100%;
+    height: 100%;
     background-color: #ffffff;
 
     display: flex;
@@ -45,7 +26,7 @@ input{
 
 .inputBox{
     position: relative;
-    width: 80%;     
+    width: 80%; 
 }
 .inputCampo{
     background: none;
@@ -75,6 +56,7 @@ input{
     padding: 10px;
 } 
 
+
 .cxBotoes{
     width: 70%;
 
@@ -95,8 +77,6 @@ button{
     background-color: #9c0d0d88;
     color: #ffffff;
 }
-
-
 
 
 `
