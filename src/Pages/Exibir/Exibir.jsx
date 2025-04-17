@@ -31,7 +31,7 @@ export default function Exibir() {
     atualizarMensagens();
   }, []);
 
-  // Avança a mensagem a cada 5 segundos
+  // Avança a mensagem a cada 20 segundos
   useEffect(() => {
     if (mensagens.length === 0) return;
 
