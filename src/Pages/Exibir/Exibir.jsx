@@ -62,6 +62,8 @@ export default function Exibir() {
     return () => clearInterval(verificarNovasMensagens);
   }, []);
 
+
+
   return (
     <StyledExibir>
       <StyledFotos>

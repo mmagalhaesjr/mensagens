@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"; // <-- importa useEffect
+import { useState, useEffect } from "react";
 import { StyledInserirImagens } from "./styled";
 
 export default function InserirImagens() {
@@ -20,8 +20,10 @@ export default function InserirImagens() {
 
     useEffect(() => {
         const imagensSalvas = JSON.parse(localStorage.getItem("imagens") || "{}");
-        setImagens(imagensSalvas); // Atualiza os previews ao carregar
+        setImagens(imagensSalvas);
     }, []);
+
+    
 
     const handleFileChange = (e, key) => {
         const file = e.target.files[0];
@@ -55,8 +57,11 @@ export default function InserirImagens() {
         localStorage.setItem("imagens", JSON.stringify(imagensBase64));
         alert("Imagens salvas no localStorage!");
 
-        // Depois de salvar no localStorage, atualiza o preview também
+        // Atualiza previews
         setImagens(imagensBase64);
+
+        // Recarrega a página
+        window.location.reload();
     };
 
     return (
@@ -84,5 +89,5 @@ export default function InserirImagens() {
                 </div>
             </form>
         </StyledInserirImagens>
-    )
+    );
 }
