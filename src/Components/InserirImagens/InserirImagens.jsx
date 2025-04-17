@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react"; // <-- importa useEffect
 import { StyledInserirImagens } from "./styled";
 
 export default function InserirImagens() {
@@ -17,6 +17,11 @@ export default function InserirImagens() {
         img4: null,
         img5: null
     });
+
+    useEffect(() => {
+        const imagensSalvas = JSON.parse(localStorage.getItem("imagens") || "{}");
+        setImagens(imagensSalvas); // Atualiza os previews ao carregar
+    }, []);
 
     const handleFileChange = (e, key) => {
         const file = e.target.files[0];
@@ -49,6 +54,9 @@ export default function InserirImagens() {
 
         localStorage.setItem("imagens", JSON.stringify(imagensBase64));
         alert("Imagens salvas no localStorage!");
+
+        // Depois de salvar no localStorage, atualiza o preview também
+        setImagens(imagensBase64);
     };
 
     return (
@@ -56,7 +64,11 @@ export default function InserirImagens() {
             <form onSubmit={handleSubmit}>
                 {[1, 2, 3, 4, 5].map(num => (
                     <div className="inputBox" key={`img${num}`}>
-                        <img src={imagens[`img${num}`] || ""} alt={`preview ${num}`} />
+                        <img
+                            src={imagens[`img${num}`] || ""}
+                            alt={`preview ${num}`}
+                            style={{ width: "150px", height: "150px", objectFit: "cover" }}
+                        />
                         <input
                             className="inputCampo"
                             type="file"

@@ -26,6 +26,8 @@ export default function Controle() {
                     
                    <InserirImagens/>
 
+                   <p>Obs: Cada imagem deve ter no máximo 200 KB.</p>
+
                 </div>
 
             </div >
