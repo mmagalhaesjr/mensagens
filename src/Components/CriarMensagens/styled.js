@@ -73,7 +73,7 @@ button{
     font-size: 1.5rem;
 }
 #botaoMsg{
-    font-size: 1rem;
+    font-size: .7rem;
     background-color: #9c0d0d88;
     color: #ffffff;
 }
