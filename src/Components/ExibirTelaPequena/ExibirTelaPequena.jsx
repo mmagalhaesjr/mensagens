@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { StyledExibirTelaPequena, StyledRodape, StyledMensagens, StyledFotos } from "./styled";
 import qrcode from "../../assets/zap.png";
 import logo1 from "../../assets/logo1.png";
-import SlideFotos from "../SlideFotos/SlideFotos";
+import SlideFotos from "../../Components/SlideFotos/SlideFotos";
 
 export default function ExibirTelaPequena() {
   const [mensagens, setMensagens] = useState([]);
@@ -10,28 +10,35 @@ export default function ExibirTelaPequena() {
   const mensagensAntigasRef = useRef([]);
 
   // Função para carregar mensagens do localStorage
-  const carregarMensagens = () => {
-    const pegar = localStorage.getItem("dadosLocalStorage");
-    const lista = pegar ? JSON.parse(pegar) : [];
-    return lista;
-  };
+  function carregarMensagens() {
+    const dadosLocalStorage = localStorage.getItem("dadosLocalStorage");
+    const listaMensagens = dadosLocalStorage ? JSON.parse(dadosLocalStorage) : [];
+    return listaMensagens;
+  }
 
   // Atualiza o estado com novas mensagens se houver diferença
-  const atualizarMensagens = () => {
+  function atualizarMensagens() {
     const atualizadas = carregarMensagens();
     if (atualizadas.length !== mensagensAntigasRef.current.length) {
       mensagensAntigasRef.current = atualizadas;
       setMensagens(atualizadas);
-      setMensagemAtualIndex(0); // reinicia da primeira mensagem
+      //setMensagemAtualIndex(0); // reinicia da primeira mensagem
     }
-  };
+  }
+
+  // Função para lidar com mudanças no localStorage
+  function verificarAlterecoes(e) {
+    if (e.key === "dadosLocalStorage") {
+      atualizarMensagens();
+    }
+  }
 
   // Carrega as mensagens inicialmente
   useEffect(() => {
     atualizarMensagens();
   }, []);
 
-  // Avança a mensagem a cada 5 segundos
+  // Avança a mensagem a cada 20 segundos
   useEffect(() => {
     if (mensagens.length === 0) return;
 
@@ -44,13 +51,8 @@ export default function ExibirTelaPequena() {
 
   // Escuta mudanças no localStorage (para múltiplas abas)
   useEffect(() => {
-    const handleStorage = (e) => {
-      if (e.key === "dadosLocalStorage") {
-        atualizarMensagens();
-      }
-    };
-    window.addEventListener("storage", handleStorage);
-    return () => window.removeEventListener("storage", handleStorage);
+    window.addEventListener("storage", verificarAlterecoes);
+    return () => window.removeEventListener("storage", verificarAlterecoes);
   }, []);
 
   // Escuta mudanças internas (dentro da mesma aba)

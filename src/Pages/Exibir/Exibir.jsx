@@ -27,7 +27,7 @@ export default function Exibir() {
   }
 
   // Função para lidar com mudanças no localStorage
-  function handleStorage(e) {
+  function verificarAlterecoes(e) {
     if (e.key === "dadosLocalStorage") {
       atualizarMensagens();
     }
@@ -51,8 +51,8 @@ export default function Exibir() {
 
   // Escuta mudanças no localStorage (para múltiplas abas)
   useEffect(() => {
-    window.addEventListener("storage", handleStorage);
-    return () => window.removeEventListener("storage", handleStorage);
+    window.addEventListener("storage", verificarAlterecoes);
+    return () => window.removeEventListener("storage", verificarAlterecoes);
   }, []);
 
   // Escuta mudanças internas (dentro da mesma aba)
