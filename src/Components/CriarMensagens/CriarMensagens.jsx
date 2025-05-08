@@ -17,7 +17,7 @@ export default function CriarMensagens() {
     function criarMensagem(data) {
         let mensagensSalvas;
         try {
-            mensagensSalvas = JSON.parse(localStorage.getItem("dadosFormulario"));
+            mensagensSalvas = JSON.parse(localStorage.getItem("dadosLocalStorage"));
             if (!Array.isArray(mensagensSalvas)) {
                 mensagensSalvas = [];
             }
@@ -31,7 +31,7 @@ export default function CriarMensagens() {
         };
 
         mensagensSalvas.push(novaMensagem);
-        localStorage.setItem("dadosFormulario", JSON.stringify(mensagensSalvas));
+        localStorage.setItem("dadosLocalStorage", JSON.stringify(mensagensSalvas));
 
         alert("Dados salvos com sucesso!");
         console.log(mensagensSalvas);

@@ -10,21 +10,28 @@ export default function Exibir() {
   const mensagensAntigasRef = useRef([]);
 
   // Função para carregar mensagens do localStorage
-  const carregarMensagens = () => {
-    const pegar = localStorage.getItem("dadosFormulario");
+  function carregarMensagens() {
+    const pegar = localStorage.getItem("dadosLocalStorage");
     const lista = pegar ? JSON.parse(pegar) : [];
     return lista;
-  };
+  }
 
   // Atualiza o estado com novas mensagens se houver diferença
-  const atualizarMensagens = () => {
+  function atualizarMensagens() {
     const atualizadas = carregarMensagens();
     if (atualizadas.length !== mensagensAntigasRef.current.length) {
       mensagensAntigasRef.current = atualizadas;
       setMensagens(atualizadas);
       setMensagemAtualIndex(0); // reinicia da primeira mensagem
     }
-  };
+  }
+
+  // Função para lidar com mudanças no localStorage
+  function handleStorage(e) {
+    if (e.key === "dadosLocalStorage") {
+      atualizarMensagens();
+    }
+  }
 
   // Carrega as mensagens inicialmente
   useEffect(() => {
@@ -44,11 +51,6 @@ export default function Exibir() {
 
   // Escuta mudanças no localStorage (para múltiplas abas)
   useEffect(() => {
-    const handleStorage = (e) => {
-      if (e.key === "dadosFormulario") {
-        atualizarMensagens();
-      }
-    };
     window.addEventListener("storage", handleStorage);
     return () => window.removeEventListener("storage", handleStorage);
   }, []);
@@ -61,8 +63,6 @@ export default function Exibir() {
 
     return () => clearInterval(verificarNovasMensagens);
   }, []);
-
-
 
   return (
     <StyledExibir>

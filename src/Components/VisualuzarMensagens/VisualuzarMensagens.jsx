@@ -9,7 +9,7 @@ export default function VisualuzarMensagens() {
     const mensagensAntigasRef = useRef([]);
   
     const carregarMensagens = () => {
-      const pegar = localStorage.getItem("dadosFormulario");
+      const pegar = localStorage.getItem("dadosLocalStorage");
       return pegar ? JSON.parse(pegar) : [];
     };
   
@@ -25,7 +25,7 @@ export default function VisualuzarMensagens() {
   
     useEffect(() => {
       const handleStorage = (e) => {
-        if (e.key === "dadosFormulario") {
+        if (e.key === "dadosLocalStorage") {
           atualizarMensagens();
         }
       };
@@ -42,7 +42,7 @@ export default function VisualuzarMensagens() {
   
     const removerMensagem = (index) => {
       const novasMensagens = mensagens.filter((_, i) => i !== index);
-      localStorage.setItem("dadosFormulario", JSON.stringify(novasMensagens));
+      localStorage.setItem("dadosLocalStorage", JSON.stringify(novasMensagens));
       setMensagens(novasMensagens);
       mensagensAntigasRef.current = novasMensagens;
     };

@@ -11,7 +11,7 @@ export default function ExibirTelaPequena() {
 
   // Função para carregar mensagens do localStorage
   const carregarMensagens = () => {
-    const pegar = localStorage.getItem("dadosFormulario");
+    const pegar = localStorage.getItem("dadosLocalStorage");
     const lista = pegar ? JSON.parse(pegar) : [];
     return lista;
   };
@@ -45,7 +45,7 @@ export default function ExibirTelaPequena() {
   // Escuta mudanças no localStorage (para múltiplas abas)
   useEffect(() => {
     const handleStorage = (e) => {
-      if (e.key === "dadosFormulario") {
+      if (e.key === "dadosLocalStorage") {
         atualizarMensagens();
       }
     };
