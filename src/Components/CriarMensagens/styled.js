@@ -71,11 +71,24 @@ button{
     height: 50px;
     cursor: pointer;
     font-size: 1.5rem;
+    background-color: #2a9c0dcc;
+    color: #ffffff;
+    border: none;
+
+    &:hover{
+        background-color: #1c6909cc; 
+    }
 }
 #botaoMsg{
-    font-size: .7rem;
-    background-color: #9c0d0d88;
+    font-size: .8rem;
+    background-color: #9c0d0dcc;
     color: #ffffff;
+    font-weight: bold;
+    border: none;
+
+    &:hover{
+        background-color: #660909cc;
+    }
 }
 
 

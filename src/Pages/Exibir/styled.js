@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const StyledExibir = styled.main`
 
 width: 100%;
-height: 100vh;
+height: 100lvh;
 background-color: #0a94d4;
 position: relative;
 
@@ -20,7 +20,6 @@ export const StyledMensagens = styled.section`
     padding: 20px;
     flex-wrap: wrap;
     position: relative;
-
     background-color: #daba04fd;
    
     display: flex;

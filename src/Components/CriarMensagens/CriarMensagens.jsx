@@ -52,7 +52,7 @@ export default function CriarMensagens() {
 
                 <div className="cxBotoes">
                     <button type="submit">ENVIAR</button>
-                    <button id="botaoMsg" onClick={() => localStorage.clear()} type="button">EXCLUIR TODAS AS MENSAGENS</button>
+                    <button id="botaoMsg" onClick={() => localStorage.clear()} type="button">EXCLUIR TUDO!</button>
                 </div>
             </form>
 
