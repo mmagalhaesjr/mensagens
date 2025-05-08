@@ -11,9 +11,9 @@ export default function Exibir() {
 
   // Função para carregar mensagens do localStorage
   function carregarMensagens() {
-    const pegar = localStorage.getItem("dadosLocalStorage");
-    const lista = pegar ? JSON.parse(pegar) : [];
-    return lista;
+    const dadosLocalStorage = localStorage.getItem("dadosLocalStorage");
+    const listaMensagens = dadosLocalStorage ? JSON.parse(dadosLocalStorage) : [];
+    return listaMensagens;
   }
 
   // Atualiza o estado com novas mensagens se houver diferença
@@ -22,7 +22,7 @@ export default function Exibir() {
     if (atualizadas.length !== mensagensAntigasRef.current.length) {
       mensagensAntigasRef.current = atualizadas;
       setMensagens(atualizadas);
-      setMensagemAtualIndex(0); // reinicia da primeira mensagem
+      //setMensagemAtualIndex(0); // reinicia da primeira mensagem
     }
   }
 
